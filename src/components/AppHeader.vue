@@ -1,0 +1,9 @@
+<template>
+  <h1>Weather App</h1>
+</template>
+
+<script>
+export default {
+  name: 'AppHeader'
+};
+</script>

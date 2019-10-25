@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 
 module.exports = {
   mode: 'development',
@@ -12,7 +13,8 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new VuetifyLoaderPlugin(),
   ],
 
   devServer: {
@@ -25,18 +27,27 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: 'babel-loader'
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader'
       },
       {
-        test: /\.scss$/,
+        test: /\.s(c|a)ss$/,
         use: [
           'vue-style-loader',
           'css-loader',
-          'sass-loader'
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+              sassOptions: {
+                fiber: require('fibers'),
+                indentedSyntax: true // optional
+              },
+            },
+          }
         ]
       },
       {

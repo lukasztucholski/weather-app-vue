@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router/index.js';
+import store from './store/index.js';
+
 import axios from 'axios'
 import './styles/index.scss';
 
@@ -13,6 +15,7 @@ axios.defaults.params = { APPID: 'cc1784c705369804b4f0145167a57987' };
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App />'
 })

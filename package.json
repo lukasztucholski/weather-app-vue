@@ -1,0 +1,14 @@
+{
+  "name": "weather-app-vue",
+  "version": "1.0.0",
+  "description": "Weather app created for recruitment needs",
+  "main": "index.js",
+  "scripts": {
+  },
+  "keywords": [
+    "weather",
+    "vue"
+  ],
+  "author": "Łukasz Tucholski",
+  "license": "MIT"
+}

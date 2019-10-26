@@ -6,7 +6,7 @@ export default {
   state: {
     errors: {},
     loading: {},
-    currentWeather: {},
+    weather: {},
   },
 
   mutations: {
@@ -16,18 +16,22 @@ export default {
     SET_LOADING: (state, payload) => {
       state.loading = { ...state.loading, ...payload }
     },
-    SET_CURRENT_WEATHER: (state, payload) => {
-      state.currentWeather = { ...payload }
+    SET_WEATHER: (state, payload) => {
+      state.weather = { ...payload }
     }
   },
 
   actions: {
-    async getWeather({ commit }, data) {
+    async getWeather({ commit }, { city, selectedMode }) {
       commit('SET_LOADING', { btn: true })
+
       try {
-        const response = await api.getCurrentWeather(data)
-        console.log(response.data)
-        commit('SET_CURRENT_WEATHER', response.data);
+        let response;
+        if (selectedMode === 'current') response = await api.getCurrentWeather(city);
+        else if (selectedMode === '5-days-forecast') response = await api.getForecastWeather(city);
+        else return;
+        console.log(response.data);
+        commit('SET_WEATHER', response.data);
       } catch (error) {
         commit('SET_ERRORS', { city: error.response.data.message })
       } finally {
@@ -39,6 +43,6 @@ export default {
   getters: {
     errors: (state) => state.errors,
     loading: (state) => state.loading,
-    currentWeather: (state) => state.currentWeather,
+    weather: (state) => state.weather,
   },
 }

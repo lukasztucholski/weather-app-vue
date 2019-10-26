@@ -1,9 +1,13 @@
 <template>
-  <h1>Weather App</h1>
+  <RequestForm />
 </template>
 
 <script>
+import RequestForm from './RequestForm.vue'
+
 export default {
-  name: 'AppHeader'
-};
+  name: 'AppHeader',
+
+  components: { RequestForm }
+}
 </script>

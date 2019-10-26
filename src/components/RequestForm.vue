@@ -19,15 +19,15 @@
       </v-card>
     </v-row>
     <v-row
-      v-if="Object.keys(weather).length > 0 && weather.main"
+      v-if="weather.type === 'current'"
       justify="center"
       class="mt-5"
-    >Current temperature in {{ weather.name }}: {{ weather.main.temp }} &deg;C</v-row>
+    >Current temperature in {{ weather.city }}: {{ weather.weather.temp }} &deg;C</v-row>
     <v-row
-      v-if="weather.list"
+      v-else-if="weather.type === 'forecast'"
       justify="center"
       class="mt-5"
-    >Forecasted temperature in {{ weather.city.name }}: {{ weather.list[0].main.temp }} &deg;C</v-row>
+    >Forecasted temperature in {{ weather.city }}: {{ weather.forecast[0].temp }} &deg;C</v-row>
   </v-container>
 </template>
 

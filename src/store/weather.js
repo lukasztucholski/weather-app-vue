@@ -1,4 +1,4 @@
-import { api } from '../utils/index.js';
+import { api, CurrentWeatherModel, ForecastWeatherModel } from '../utils/index.js';
 
 export default {
   namespaced: true,
@@ -26,14 +26,22 @@ export default {
       commit('SET_LOADING', { btn: true })
 
       try {
-        let response;
-        if (selectedMode === 'current') response = await api.getCurrentWeather(city);
-        else if (selectedMode === '5-days-forecast') response = await api.getForecastWeather(city);
+        let response, weather;
+
+        if (selectedMode === 'current') {
+          response = await api.getCurrentWeather(city);
+          weather = new CurrentWeatherModel(response.data)
+        }
+        else if (selectedMode === '5-days-forecast') {
+          response = await api.getForecastWeather(city);
+          weather = new ForecastWeatherModel(response.data)
+        }
         else return;
-        console.log(response.data);
-        commit('SET_WEATHER', response.data);
+
+        commit('SET_WEATHER', weather);
       } catch (error) {
-        commit('SET_ERRORS', { city: error.response.data.message })
+        console.error(error)
+        // commit('SET_ERRORS', { city: error.response.data.message })
       } finally {
         commit('SET_LOADING', { btn: false })
       }

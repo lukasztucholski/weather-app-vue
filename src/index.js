@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router/index.js';
 import store from './store/index.js';
-import vuetify from './utils/plugins/vuetify.js';
+import { vuetify } from './utils/index.js';
 
 import './styles/index.scss';
 

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api } from '../utils/index.js';
 
 export default {
   namespaced: true,
@@ -25,7 +25,7 @@ export default {
     async getWeather({ commit }, data) {
       commit('SET_LOADING', { btn: true })
       try {
-        const response = await axios.get(`weather/?q=${data}`)
+        const response = await api.getCurrentWeather(data)
         console.log(response.data)
         commit('SET_CURRENT_WEATHER', response.data);
       } catch (error) {

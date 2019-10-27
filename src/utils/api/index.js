@@ -1,10 +1,16 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://api.openweathermap.org/data/2.5/';
-axios.defaults.params = { APPID: 'cc1784c705369804b4f0145167a57987', units: 'metric', cnt: 5 };
-// btw, axios in v0.19 have bug with default params so need to use older package.
+class DataTracker {
+  constructor({ url, params }) {
+    this.url = url;
+    this.params = params
+  }
 
-export default {
-  getCurrentWeather: (city) => axios.get(`weather/?q=${city}`),
-  getForecastWeather: (city) => axios.get(`forecast/?q=${city}`)
+  getData({ city, mode }) {
+    return axios.get(`${this.url}${mode}/?q=${city}`, { params })
+  };
 }
+const url = 'https://api.openweathermap.org/data/2.5/';
+const params = { APPID: 'cc1784c705369804b4f0145167a57987', units: 'metric', cnt: 5 };
+
+export default new DataTracker({ url, params })

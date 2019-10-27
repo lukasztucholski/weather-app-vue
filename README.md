@@ -1,14 +1,14 @@
 Live Production: https://weather-app-vue-js.netlify.com/
 
-## Build Setup
+# Build Setup
 
-clone repo
+First - clone repo
 
-# install dependencies
+### install dependencies
 npm run install
 
-# serve with hot reload at localhost:3000
+### serve with hot reload at localhost:3000
 npm run dev
 
-# build for production (output in /dist folder)
+### build for production (output in /dist folder)
 npm run build

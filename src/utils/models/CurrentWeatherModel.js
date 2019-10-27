@@ -1,19 +1,19 @@
-import {BaseModel} from '../index.js';
+import { WeatherModel, helpers } from '../index.js'
 
 
-export default class CurrentWeatherModel extends BaseModel {
-  constructor(weather = {}) {
+export default class CurrentWeatherModel extends WeatherModel {
+  constructor(weather = {}, mode) {
     super();
 
-    this.type = 'current'
+    this.mode = mode;
     this.city = weather.name;
     this.country = weather.sys.country;
-    this.sunrise = weather.sys.sunrise;
-    this.sunset = weather.sys.sunset;
+    this.sunrise = helpers.dateTimeFromUnix(weather.sys.sunrise);
+    this.sunset = helpers.dateTimeFromUnix(weather.sys.sunset);
     this.timezone = weather.timezone;
 
     this.weather = {
-      _time: weather.dt,
+      _time: helpers.dateFromUnix(weather.dt),
       _description: weather.weather[0].description,
       _main: weather.weather[0].main,
       cloudy: weather.clouds.all,

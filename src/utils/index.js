@@ -1,13 +1,15 @@
-import api from './api/index.js'
+import DataTracker from './api/index.js'
 import vuetify from './plugins/vuetify.js';
-import BaseModel from './models/BaseModel.js';
+import WeatherModel from './models/WeatherModel.js';
 import ForecastWeatherModel from './models/ForecastWeatherModel.js'
 import CurrentWeatherModel from './models/CurrentWeatherModel.js'
+import helpers from './helpers.js'
 
 export {
-  api,
+  DataTracker,
   vuetify,
-  BaseModel,
+  WeatherModel,
   ForecastWeatherModel,
   CurrentWeatherModel,
+  helpers,
 }

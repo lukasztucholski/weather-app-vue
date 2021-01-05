@@ -14,7 +14,7 @@
   "author": "Łukasz Tucholski",
   "license": "MIT",
   "dependencies": {
-    "axios": "0.18.0",
+    "axios": "0.21.1",
     "core-js": "^3.3.4",
     "regenerator-runtime": "^0.13.3",
     "vue": "^2.6.10",
